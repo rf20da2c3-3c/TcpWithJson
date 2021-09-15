@@ -2,9 +2,9 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ModelLib.model;
-using Newtonsoft.Json;
 
 namespace JsonServer
 {
@@ -17,7 +17,7 @@ namespace JsonServer
 
         public void Start()
         {
-            TcpListener listener = new TcpListener(IPAddress.Loopback, PORT);
+            TcpListener listener = new TcpListener(IPAddress.Any, PORT);
             listener.Start();
 
             while (true)
@@ -44,7 +44,7 @@ namespace JsonServer
 
                 String carString = sr.ReadLine();
 
-                Car car = JsonConvert.DeserializeObject<Car>(carString);
+                Car car = JsonSerializer.Deserialize<Car>(carString);
 
                 Console.WriteLine("Received car json string " + carString);
                 Console.WriteLine("Received car : " + car);

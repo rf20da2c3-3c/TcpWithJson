@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using ModelLib.model;
-using Newtonsoft.Json;
 
 namespace JsonClient
 {
@@ -24,7 +24,7 @@ namespace JsonClient
 
                 Car car = new Car("EL23401", "Black", "Tesla");
 
-                String json = JsonConvert.SerializeObject(car);
+                String json = JsonSerializer.Serialize(car);
 
                 sw.WriteLine(json);
             }
